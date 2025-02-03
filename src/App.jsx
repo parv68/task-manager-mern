@@ -68,13 +68,12 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center justify-center p-6 transition duration-300">
-      <motion.div 
+      <motion.div
         className="bg-gray-800 shadow-lg rounded-lg p-6 w-full max-w-md transition duration-300"
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
       >
         <h1 className="text-2xl font-bold text-white mb-4 text-center">Task Manager</h1>
-
         {/* Input and Add Task Button */}
         <div className="flex mb-4">
           <input
@@ -92,6 +91,14 @@ function App() {
             Add
           </motion.button>
         </div>
+        <div className="mb-4">
+          <h2 className="text-lg font-bold">Task List</h2>
+          <ul>
+            {tasks.map((task) => (
+              <li key={task.id}>{task.title}</li>
+            ))}
+          </ul>
+        </div>
 
         {/* Filter Buttons */}
         <div className="flex justify-between mb-4">
@@ -99,9 +106,8 @@ function App() {
             <motion.button
               key={type}
               onClick={() => setFilter(type)}
-              className={`px-3 py-1 rounded-md ${
-                filter === type ? "bg-blue-500" : "bg-gray-600"
-              }`}
+              className={`px-3 py-1 rounded-md ${filter === type ? "bg-blue-500" : "bg-gray-600"
+                }`}
               whileTap={{ scale: 0.9 }}
             >
               {type.charAt(0).toUpperCase() + type.slice(1)}
@@ -124,9 +130,8 @@ function App() {
                   {/* Complete Task Button */}
                   <motion.button
                     onClick={() => handleToggleComplete(task._id)}
-                    className={`px-2 py-1 rounded-md ${
-                      task.completed ? "bg-green-500 text-white" : "bg-gray-500"
-                    }`}
+                    className={`px-2 py-1 rounded-md ${task.completed ? "bg-green-500 text-white" : "bg-gray-500"
+                      }`}
                     whileTap={{ scale: 0.9 }}
                   >
                     ✓
@@ -142,9 +147,8 @@ function App() {
                     />
                   ) : (
                     <span
-                      className={`cursor-pointer ${
-                        task.completed ? "line-through text-gray-400" : "text-white"
-                      }`}
+                      className={`cursor-pointer ${task.completed ? "line-through text-gray-400" : "text-white"
+                        }`}
                       onClick={() => handleToggleComplete(task._id)}
                     >
                       {task.name}
